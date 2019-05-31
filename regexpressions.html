@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+      .jumbotron{
+  margin-top: 20px;
+  background-size: cover;
+  background-color: darkgreen;
+  color: white;
+  height: 80%;
+}
+    #myCarousel{
+      border: 1px solid black;
+      color: black;
+    }
+
+</style>
+
+</head>
+<body style="background-color:white;">
+
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+<!---    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>--->
+  </div>
+</nav>
+<!---Jumbotron--->
+<div class="jumbotron">
+  <center>
+  <h2>ReGuLaR ExPre$$iOnS</h2> 
+  </center>
+</div>
+<div class="container">
+  <center><h3>How to use regular expressions in R</h3>
+  <p>
+
+  </p>
+  </center>
+  
+  
+</div>
+
+<hr>
+<div class="container">
+  <p>This is a quick reference guide on how to utilize `regular expressions` in <em>R</em>.</p>
+<div class="container">
+  <center><h3>Metacharacters</h3></center>
+          <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Metacharacter</th>
+        <th onclick="sortTable(2)">Name</th>
+        <th onclick="sortTable(1)">Matches</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>.</strong></td>
+        <td>dot</td>
+        <td>any one character</td>
+      </tr>
+      <tr>
+        <td><strong>[...]</strong></td>
+        <td>character class</td>
+        <td>any character listed</td>
+      </tr>
+      <tr>
+        <td><strong>[^...]</strong></td>
+        <td>negated character class</td>
+        <td>any character not listed</td>
+      </tr>
+      <tr>
+        <td><strong>^</strong></td>
+        <td>caret</td>
+        <td>the position at the start of the line</td>
+      </tr>
+      <tr>
+        <td><strong>$</strong></td>
+        <td>dollar</td>
+        <td>the position at the end of the line</td>
+      </tr>
+      <tr>
+        <td><strong>\<</strong></td>
+        <td>backslash less-than</td>
+        <td>the position at the start of a word</td>
+      </tr>
+      <tr>
+        <td><strong>\></strong></td>
+        <td>backslash greater-than</td>
+        <td>the positionat the end of a word</td>
+      </tr>
+      <tr>
+        <td><strong>|</strong></td>
+        <td>or, bar</td>
+        <td>matches either expression it separates</td>
+      </tr>
+      <tr>
+        <td><strong>(...)</strong></td>
+        <td>parentheses</td>
+        <td>used to limit the scope of <strong>|</strong> , plus additiona uses</td>
+      </tr>
+            <tr>
+        <td><strong>\\s</strong></td>
+        <td>space</td>
+        <td>removes whitespaces | using <strong>\\s+</strong> removes one or more white spaces</td>
+      </tr>
+    </tbody>
+     </table>
+</div>
+<div class="container">
+  <h3><center>Metacharacters and repetition</center></h3>
+            <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th>Metacharacter</th>
+        <th onclick="sortTable(0)">Minimum Required</th>
+        <th onclick="sortTable(2)">Maximum to Try</th>
+        <th onclick="sortTable(1)">Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>?</strong></td>
+        <td>none</td>
+        <td>1</td>
+        <td>one allowed; non required ("one optional")</td>
+      </tr>
+      <tr>
+        <td><strong>*</strong></td>
+        <td>none</td>
+        <td>no limit</td>
+        <td>unlimited allowed; non required ("any amount OK")</td>
+      </tr>
+      <tr>
+        <td><strong>+</strong></td>
+        <td>1</td>
+        <td>no limit</td>
+        <td>unlimited allowed; one required ("at least one")</td>
+      </tr>
+    </tbody>
+     </table>
+  
+  
+</div>
+<div class="container">
+  <h3><center>Position Metacharacters</center></h3>
+            <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th>Metacharacter</th>
+        <th onclick="sortTable(2)">Name</th>
+        <th onclick="sortTable(1)">Matches</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>^</strong></td>
+        <td>caret</td>
+        <td>Matches the position at the start of the line</td>
+      </tr>
+      <tr>
+        <td><strong>$</strong></td>
+        <td>dollar</td>
+        <td>Matches the position at the end of the line</td>
+      </tr>
+      <tr>
+        <td><strong>\<</strong></td>
+        <td>word boundary: beginning of word</td>
+        <td>Matches the position at the <strong>start</strong> of a word</td>
+      </tr>
+      <tr>
+        <td><strong>\></strong></td>
+        <td>word boundary: end of word</td>
+        <td>Matches the position at the <strong>end</strong> of a word</td>
+      </tr>
+    </tbody>
+     </table>
+</div>
+<div class="container">
+  <h3><center>Other Metacharacters</center></h3>
+            <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th>Metacharacter</th>
+        <th onclick="sortTable(2)">Name</th>
+        <th onclick="sortTable(1)">Matches</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>|</strong></td>
+        <td>alternation (bar): e.g. either or</td>
+        <td>Matches either expression it seperates</td>
+      </tr>
+      <tr>
+        <td><strong>(...)</strong></td>
+        <td>parentheses</td>
+        <td>Oimits scop of alternation, provides grouping for the quantifiers, and "captures" for backreferences</td>
+      </tr>
+      <tr>
+        <td><strong>\1,\2,...</strong></td>
+        <td>backreference</td>
+        <td>Matches text previously matched within the first, second, etc., set of parentheses</td>
+      </tr>
+    </tbody>
+     </table>
+  
+  
+</div>
+
+<div class="container">
+  <h3><center>Metacharacters and repetition</center></h3>
+            <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Metacharacter</th>
+        <th onclick="sortTable(2)">Description</th>
+        <th onclick="sortTable(1)">Meaning</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>\t</strong></td>
+        <td>tab</td>
+        <td>a tab character</td>
+      </tr>
+      <tr>
+        <td><strong>\n</strong></td>
+        <td>newline</td>
+        <td>a newline character</td>
+      </tr>
+      <tr>
+        <td><strong>\r</strong></td>
+        <td>carriage-return</td>
+        <td>a carriage-return character</td>
+      </tr>
+      <tr>
+        <td><strong>\s</strong></td>
+        <td>whitespace</td>
+        <td>matches any "whitespace" character (space, tab, newline, formfeed, and such)</td>
+      </tr>
+      <tr>
+        <td><strong>\S</strong></td>
+        <td>not a whitespace \s</td>
+        <td>matches anything that is not a whitespace</td>
+      </tr>
+      <tr>
+        <td><strong>\w</strong></td>
+        <td>[a-zA-Z0-9_]</td>
+        <td>useful as in \w+ to ostensibly match a word</td>
+      </tr>
+      <tr>
+        <td><strong>\W</strong></td>
+        <td>anything not [a-zA-Z0-9_]</td>
+        <td>anything that is not a word or numeric character</td>
+      </tr>
+      <tr>
+        <td><strong>\d</strong></td>
+        <td>[0-9]</td>
+        <td>i.e., a digit</td>
+      </tr>
+      <tr>
+        <td><strong>\D</strong></td>
+        <td>anything not \d</td>
+        <td>i.e., [^0-9]</td>
+      </tr>
+    </tbody>
+     </table>
+  
+  
+</div>
+
+<div class="container">
+  <h3><center>Lookaround </center></h3>
+            <table class="table" id="myTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Type</th>
+        <th onclick="sortTable(2)">Regex</th>
+        <th onclick="sortTable(1)">Successful if the enclosed subexpression...</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Positive Lookbehind</td>
+        <td><strong>(?<=.....)</strong></td>
+        <td>successful if <strong>can</strong> match to the <strong>left</strong></td>
+      </tr>
+      <tr>
+        <td>Negative Lookbehind</td>
+        <td><strong>(?<!.....)</strong></td>
+        <td>successful if <strong>can not</strong> match to the <strong>left</strong></td>
+      </tr>
+      <tr>
+        <td>Positive Lookahead</td>
+        <td><strong>(?<=.....)</strong></td>
+        <td>successful if <strong>can</strong> match to the <strong>right</strong></td>
+      </tr>
+      <td>Negative Lookahead</td>
+        <td><strong>(?<!.....)</strong></td>
+        <td>successful if <strong>can not</strong> match to the <strong>right</strong></td>
+      </tr>
+    </tbody>
+     </table>
+  
+  
+</div>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+
+<hr>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>

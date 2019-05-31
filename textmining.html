@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+  .jumbotron{
+  margin-top: 20px;
+  background-image: url("img/text_plot_trajectory.png");
+  background-size: cover;
+  color: black;
+  height: 100%;
+}
+  #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: lightblue;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: blue;
+}
+#code {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: block;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+ <!---   <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>--->
+  </div>
+</nav>
+<!---Jumbotron--->
+<div class="jumbotron">
+  <center>
+  <h2>Text Mining: Shakespeare's Romeo & Juliet</h2> 
+  </center>
+</div>
+<div class="container">
+<h4>Text Mining in R using the wordcloud and tm packages:</h4>
+<p>This is a tutorial on how to do text mining with R and R Studio. 
+
+First you will need the appropriate packages to use in R Studio. </p>
+
+<h3>Step 1:</h3>
+<p>Install the packages</p>
+<pre><code> Needed <- c("tm","wordcloud")   
+ options(repos = c(CRAN = "http://cran.rstudio.com"))
+ install.packages(Needed, dependencies=TRU</code></pre>
+ 
+<hr>
+<h3>Step 2:</h3>
+<p>Next you will want to load the necessary libraries into R Studio.</p>
+<pre><code>library(tm)
+library(wordcloud)</code></pre>
+<hr>
+<h3>Step 3:</h3>
+<p>First you will want to set the file path for the folder that contains your text document. You will want to set this on the overall folder and not on the file itself. This allows you to select different doucments to do analyses on.</p>
+<pre><code>##Set the file path for the documents to be inspected############################################
+
+actone <- ("file/path") 
+
+##Sets the directory to arbitrary name in ()#####################################
+dir(actone) 
+
+docs <- Corpus(DirSource(actone)) 
+
+docs<-docs[1]</code></pre>
+<p>[1] "romeo.txt"</p>
+
+<hr>
+<h3>Step 4:</h3>
+<p>Next you will need to preprocess the data in the text file. This will allow you to analyze the text to look for word frequencies. Utilize the following 'clean_corpus' function to do so. This will remove the white space, punctuation, transform the words to lower case, and then finally remove the stopwords that are common in the English language. In our case I added the additional word 'thou' to remove from our analysis. You can choose any word to remove from your analysis by placing it in the c(stopwords("en"),"thou") part of our function. </p>
+
+<pre><code>clean_corpus <- function(corpus){
+  corpus <- tm_map(corpus, stripWhitespace)
+  corpus <- tm_map(corpus, removePunctuation)
+  corpus <- tm_map(corpus, content_transformer(tolower))
+  corpus <- tm_map(corpus, removeWords, c(stopwords("en"),"thou"))
+  return(corpus)
+}
+
+docs<-clean_corpus(docs)</code></pre>
+
+<hr>
+<h3>Step 5:</h3>
+<p>Next you will create a document term matrix or dtm to store the text in. </p>
+<pre><code>dtm <- DocumentTermMatrix(docs) 
+
+dtm </code></pre>
+<p>Result: </br>
+<pre><code>DocumentTermMatrix (documents: 1, terms: 3602)
+Non-/sparse entries: 3602/0
+Sparsity           : 0%
+Maximal term length: 16
+Weighting          : term frequency (tf)</code></pre>
+</p>
+<hr>
+<h3>Step 6:</h3>
+<p>After creating the dtm you can then look at finding frequent terms in the text file. You can choose any number to place in the second argument in the findFreqTerms function.For our purposes, we are looking at the words that show up a minimum of 100 times in the text.</p>
+<pre><code>##Finds the frequency of the terms in a text document########################
+
+findFreqTerms(dtm,100)</code></pre>
+<p>Result:</p>
+<pre><code>[1] "capulet" "juliet"  "lady"    "love"    "nurse"   "romeo"   "shall"   "thee"    "thy"     "will"</code></pre>
+<hr>
+<h3>Step 7:</h3>
+<p>You can then look at words that are associated with other words. Think of this as finding a "correlation" between terms.</p>
+<pre><code>##Finds term correlations with other terms#########################################
+findAssocs(dtm, "romeo", 0.9)</code></pre>
+<p>Result:</p>
+<pre><code>$romeo
+numeric(0)
+</code></pre>
+<hr>
+<h3>Step 8:</h3>
+<p>The next step will allow you to remove sparse terms from the text file as well.</p>
+<pre><code>##Removes sparse terms from a document#########################################################
+inspect(removeSparseTerms(dtm, 0.6))</code></pre>
+<p>Result:</p>
+<pre><code>DocumentTermMatrix (documents: 1, terms: 3602)
+Non-/sparse entries: 3602/0
+Sparsity           : 0%
+Maximal term length: 16
+Weighting          : term frequency (tf)
+Sample             :
+           Terms
+Docs        capulet juliet lady love nurse romeo shall thee thy will
+  romeo.txt     133    176  105  135   143   293   110  139 167  147</code></pre>
+  <hr>
+  <h3>Step 9:</h3>
+  <p>After this you will want to create a term document matrix for the text file. This will allow you to sum the number of words by word present in the text. </p>
+  <pre><code>tdm <- TermDocumentMatrix(docs)   
+
+tdm </code></pre>
+<p>Result:</p>
+<pre><code>
+TermDocumentMatrix (terms: 3602, documents: 1)
+Non-/sparse entries: 3602/0
+Sparsity           : 0%
+Maximal term length: 16
+Weighting          : term frequency (tf)</code></pre>
+<hr>
+<h3>Step 10:</h3>
+<p>You will now create an object 'freq' that will allow you to sum the words in the columns by frequency</p>
+<pre><code>freq <- colSums(as.matrix(dtm)) 
+
+length(freq) </code></pre>
+<p>Result:</p>
+<pre><code>[1] 3602</code></pre>
+<hr>
+<h3>Step 11:</h3>
+<p>Next we can look at the top 20 at the head of the 'dtm' and also the last 20 at the tail of the 'dtm' matrix that is loaded into R. You can specify the number of terms to show at the head and tail by changing the second argument in the head() function.</p>
+<pre><code>head(table(freq), 20) 
+
+ # tail(table(freq), 20) </code></pre>
+ <p>Result:</p>
+ <pre><code>freq
+   1    2    3    4    5    6    7    8    9   10   11   12   13   14   15   16   17   18   19   20 
+3753  878  364  189  104   80   58   49   33   31   21   20   17    9   14    9    6    7   11    6 </code></pre>
+<hr>
+<h3>Step 12:</h3>
+<p>Next we can create a wordcloud to visualize the words in the text by number of times is appears. This will be reflected by the size and color of the words shown. Load the wordcloud library first and then set the seed with set.seed() function. This will allow us to make our results replicable and ensure the same results each time. 
+
+The names() function pulls the names from the freq object we have created. The min.freq sets the minimum times a word must appear in the text to show up in our wordcloud. </p>
+<pre><code>library(wordcloud) 
+
+set.seed(142)   
+wordcloud(names(freq), freq, min.freq=75, scale=c(5, .1))</code></pre>
+<center><img src="img/wordcloud.png"></center>
+<hr>
+<h3>Additional Steps:</h3>
+
+<p>Additional wordcloud functions. We can also set the scale of the wordcloud using the scale function. Where 'colors =' we can set the color palette that is used in the wordcloud as well.</p>
+<pre><code>##Plots the minimum number (frequency) of words in color
+set.seed(142)   
+wordcloud(names(freq), freq, min.freq=75, scale=c(5, .1), colors=brewer.pal(6, "Dark2")) </code></pre>
+<center><img src="img/wordcloud_two.png"></center>
+<p><strong>Congratulations you have made your first wordcloud visualization using the tm and wordcloud packages in R.</strong></p>
+
+<h3>Additional Steps: Creating a Barplot</h3>
+<p>We can also create a bar plot that will show the frequency of the words used.</p>
+<h3>Step 1: Create a TermDocumentMatrix.</h3>
+<pre><code>## Calculate the rowSums: term_frequency ##################################################################
+# Create a TDM from clean_corp: trump_tdm
+tdm<-TermDocumentMatrix(docs)
+# Convert trump_tdm to a matrix: trump_m
+tdm<-as.matrix(tdm)</code></pre>
+<hr>
+<h3>Step 2: Sum the frequency of words by the rows in the matrix. </h3>
+<p>We are also going to sort our words in decreasing order by frequency.</p>
+<pre><code>term_frequency<-rowSums(tdm)
+
+# Sort term_frequency in descending order
+term_frequency<-sort(term_frequency,decreasing=TRU</code></pre>
+<hr>
+<h3>Step 3: Take a look at the top 10 words.</h3>
+<p>You can change the number of words to look at by changing [1:10] to any combination of numbers you can think of.</p>
+<pre><code># View the top 10 most common words
+term_frequency[1:10]</code></pre>
+<p>Result:</p>
+<pre><code>  romeo  juliet     thy    will   nurse    thee    love capulet   shall    lady 
+    293     176     167     147     143     139     135     133     110     105 </code></pre>
+    <hr>
+    <h3>Step 4: Plot the barchart.</h3>
+    <p>Again, you can change the rank of the words from the top 1-10 to 5-10 or any combination by changing the [1:10] argument in our code. The las argument allows us to keep the words in a vertical rather than horizontal position when creating our bar chart. </p>
+    <hr>
+    <pre><code># Plot a barchart of the 10 most common words
+barplot(term_frequency[1:10],col="lightgreen",las=2)</code></pre>
+<hr>
+<center>
+<img src="img/barplot.png">
+</center>
+<hr>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>

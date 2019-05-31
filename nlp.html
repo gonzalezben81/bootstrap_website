@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="dist/clipboard.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+      .jumbotron{
+  margin-top: 20px;
+  background-size: cover;
+  background-color: black;
+  color: white;
+  height: 80%;
+}
+#picimage{
+  height: 650px;
+  width: 1000px;
+}
+</style>
+<script>
+new ClipboardJS('.btn');
+</script>
+</head>
+<body style="background-color:white;">
+
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+ <!---   <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>--->
+  </div>
+</nav>
+<!---Jumbotron--->
+<div class="jumbotron">
+  <center>
+  <h2>Text Analytics with <a href="https://www.nltk.org/book/ch01.html#ex-set-comprehension-python"><strong>NLTK</strong></a> in Python</h2> 
+  </center>
+</div>
+<div class="container">
+  <center><h3>Text Analytics utilizing Python</h3>  </center>
+  <p>In this tutorial we will be working through examples of utilizing text analytics and their applications in Python. We will be going over tokenizing (words and phrases) plotting frequencies and findin the percentages of a word in a text. This tutorial utilizes Python 3.5 or higher. Some of the NLTK functionalities are not available in Python 3.5 at the time of this writing.</p>
+
+</div>
+</br>
+<hr>
+<div class="container">
+  <p>Before we begin we need to download and install the NLTK library for Python</p>
+  <pre><code>pip install nltk</code></pre>
+  <pre><code>>>> import nltk</code></pre>
+  <p>Now lets download the packages and tools we will need</p>
+  <pre><code>>>> ntlk.download()</code></pre>
+  <hr>
+  <p>Next we will want to import the books we will be using to learn NLTK with Python</p>
+  <pre><code>>>> from nltk.book import*
+*** Introductory Examples for the NLTK Book ***
+Loading text1, ..., text9 and sent1, ..., sent9
+Type the name of the text or sentence to view it.
+Type: 'texts()' or 'sents()' to list the materials.
+text1: Moby Dick by Herman Melville 1851
+text2: Sense and Sensibility by Jane Austen 1811
+text3: The Book of Genesis
+text4: Inaugural Address Corpus
+text5: Chat Corpus
+text6: Monty Python and the Holy Grail
+text7: Wall Street Journal
+text8: Personals Corpus
+text9: The Man Who Was Thursday by G . K . Chesterton 1908</code></pre>
+<hr>
+<button class="clipboard"
+   data-clipboard-text="This will be copied">
+  Copy this
+</button>
+<p>Next we can look for the occurences of words. In NLP this is called <strong>concordance</strong>, and this allows us to search for the occurence of the word that we want to look at. Below we can see that there are 39 matches for the word grail in the corpus or text we are looking at.</p>
+<pre><code>>>> text6.concordance("grail")
+Displaying 25 of 39 matches:
+els sing ] Arthur , this is the Holy Grail . Look well , Arthur , for it is you
+ it is your sacred task to seek this grail . That is your purpose , Arthur ... 
+ , Arthur ... the quest for the Holy Grail . [ boom ] [ singing stops ] LAUNCEL
+an join us in our quest for the Holy Grail . FRENCH GUARD : Well , I ' ll ask h
+ARTHUR : If you will not show us the Grail , we shall take your castle by force
+s required if the quest for the Holy Grail were to be brought to a successful c
+should separate , and search for the Grail individually . [ clop clop clop ] No
+AD : You are the keepers of the Holy Grail ? ZOOT : The what ? GALAHAD : The Gr
+il ? ZOOT : The what ? GALAHAD : The Grail . It is here . ZOOT : Oh , but you a
+ease ! In God ' s name , show me the Grail ! ZOOT : Oh , you have suffered much
+rment me no longer . I have seen the Grail ! PIGLET : There ' s no grail here .
+en the Grail ! PIGLET : There ' s no grail here . GALAHAD : I have seen it ! I 
+are you going ? GALAHAD : I seek the Grail ! I have seen it , here in this cast
+ which , I have just remembered , is grail - shaped . It ' s not the first time
+blem . GALAHAD : It ' s not the real Grail ? DINGO : Oh , wicked , bad , naught
+ne punishment for setting alight the grail - shaped beacon . You must tie her d
+ : No , we ' ve got to find the Holy Grail . Come on ! GALAHAD : Oh , let me ha
+ , but they were still no nearer the Grail . Meanwhile , King Arthur and Sir Be
+ of whom you speak , he has seen the Grail ? OLD MAN : ... Ha ha ha ha ! Heh , 
+o man has entered . ARTHUR : And the Grail . The Grail is there ? OLD MAN : The
+tered . ARTHUR : And the Grail . The Grail is there ? OLD MAN : There is much d
+ has ever crossed . ARTHUR : But the Grail ! Where is the Grail ?! OLD MAN : Se
+RTHUR : But the Grail ! Where is the Grail ?! OLD MAN : Seek you the Bridge of 
+Bridge of Death , which leads to the Grail ? OLD MAN : Heh , hee hee hee hee ! 
+e the sign that leads us to the Holy Grail ! Brave , brave Concorde , you shall</code></pre>
+<hr>
+<p>Next we can look at how certain words are used and which ones are similar in the text we are focusing on.</p>
+<pre><code>>>> text2.similar("monstrous")
+very so exceedingly heartily a as good great extremely remarkably
+sweet vast amazingly</code></pre>
+<p>Different authors utilize words in different contexts. The above code look at the use by Jane Austen. Let's go back and see how Mehlville utilized the same word.</p>
+<pre><code>>>> text1.similar("monstrous")
+true contemptible christian abundant few part mean careful puzzled
+mystifying passing curious loving wise doleful gamesome singular
+delightfully perilous fearless</code></pre>
+<p>We can see that Mehlville and Austen utilize the word differently in their books to convey different meanings and context.</p>
+<hr>
+<p>We can also look at how 2 or more words share context with each other. We can use the <strong>text2.common_contexts([])</strong> function to do so.</p>
+<pre><code>>>> text2.common_contexts(["monstrous", "very"])
+a_pretty is_pretty am_glad be_glad a_lucky</code></pre>
+<pre><code>>>> text6.common_contexts(["grail"])
+holy_. this_. the_, holy_were the_individually holy_? the_. the_!
+no_here is_- real_? the_- the_? the_is the_?! holy_! a_?! holy_in
+holy_could holy_returns</code></pre>
+<p>As you can see we were able to find common contexts or phrases utilized with the above words. What happend if we have no words that have a common_contexts?</p>
+<pre><code>>>> text1.common_contexts(["monstrous","very"])
+No common contexts were found</code></pre>
+<p>Depending on the text and the words we input we may not find anything. This reminds us that it is a good idea to know our subject matter.</p>
+<hr>
+<center><h3>Lexical Dispersion Plots:</h3>
+<h6>You will need the plotlib library installed to utilize this</h6></center>
+<hr>
+<p>What is a lexical dispersion plot? This allows us to see where in the text a word occurs. This visualization makes it easy for us to look at the use of a word over the time (plot) of the text we are analyzing.</p>
+<p>In the dispersion plot below we looked at the occurences of the words: behold, before, begat, justice, God, angel, Jesus, gabriel, and lord.</p>
+<pre><code>>>> text3.dispersion_plot(["behold","before","begat","justice","God","angel","Jesus","gabriel","lord"])</code></pre>
+<center><img id="picimage" src="img/biblical.png"></center>
+<p>Dependent on the text and especially capitalization we can get wildly different results.</p>
+<pre><code>>>> text6.dispersion_plot(["Grail","wound","Camelot","Knights","King","Lancelot","Robin","Arthur"])</code></pre>
+<center><img id="picimage" src="img/monty.png"></center>
+<hr>
+<h3>Counting Vocabulary</h3>
+<p>We can also count the vocabulary in our text as well.</p>
+<p>Here we can see how many words there are in Moby Dick and other texts. It seems the more serious the book the more words that are included.</p>
+<pre><code>>>> len(text1)
+260819</code></pre>
+<p>Month Python is not as verbose.</p>
+<pre><code>>>> len(text6)
+16967</code></pre>
+<hr>
+<h3>We can also count the occurence of specified words as well.</h3>
+<pre><code>>>> text1.count("whale")
+906</code></pre>
+<p>If we want to find the percentage the word appears in our text we can utilzie the following code.</p>
+<pre><code>>>> 100 * text1.count('whale')/len(text1)
+0.3473673313677301</code></pre>
+<p>The word whale shows up in Moby Dick 34.7% of the time, which is not that surprising. So, lets try another one.</p>
+<pre><code>>>> 100 * text6.count('King')/len(text6)
+0.1591324335474745
+>>> 100 * text6.count('Grail')/len(text6)
+0.20038899039311606</code></pre>
+<p>Here we see the percentage the word Grail and King appear in Monty Python and the Holy Grail. Remember that capitalization matters, because we get a much different result with the following.</p>
+<pre><code>>>> 100 * text6.count('grail')/len(text6)
+0.029468969175458243</code></pre>
+<hr>
+<h3>Frequency Distribution:</h3>
+<p>Next we can look at the frequency distribution (number of times a word appears in a text). We can get a running tally of how many times a word appears and plot it like below.</p>
+<pre><code>>>> fdist6 = FreqDist(text6)
+>>> fdist6.plot(50,cumulative=True)</code></pre>
+<center><img id="picimage" src="img/frequency_dist.png"></center>
+<hr>
+<h3>Find words of a certain length</h3>
+<p>Now lets find words of a certain length. We could manually type all of this out, but instead lets create a function to do this. Here our arguments are text and length and this allows us to specify different texts and lengths more interchangeably.</p>
+<pre><code>>>> def word_length(text,length):
+	V = set(text)
+	long_words = [w for w in V if len(w) > length]
+	return(long_words)</code></pre>
+	<p>Using our function we get the following: Notice we have wrapped our function inside the sorted() function in Python.</p>
+	<pre><code>>>> sorted(word_length(text6,10))
+	   
+['Auuuuuuuugh', 'BRIDGEKEEPER', 'Camaaaaaargue', 'Dramatically', 'Oooohoohohooo', 'Shrubberies', 'Unfortunately', 'accompanied', 'accomplished', 'approacheth', 'approaching', 'automatically', 'auuuuuuuugh', 'bridgekeeper', 'conclusions', 'considerable', 'dictatorship', 'differences', 'disheartened', 'distributing', 'earthquakes', 'elderberries', 'hospitality', 'illegitimate', 'illustrious', 'immediately', 'imperialist', 'impersonate', 'indefatigable', 'individually', 'influential', 'intermission', 'nnnnniggets', 'particularly', 'performance', 'perpetuates', 'perpetuating', 'regulations', 'shrubberies', 'suspenseful', 'syndicalism', 'syndicalist', 'understanding', 'varletesses', 'voluntarily']</code></pre>
+
+<p>We can also look for words that are an exact length.</p>
+<pre><code>>>> def exact_word_length(text,length):
+	V = set(text)
+	long_words = [w for w in V if len(w) == length]
+	return(long_words)</code></pre>
+	<hr>
+	<pre><code>>>> exact_word_length(text6,10)
+	   
+['Providence', 'horrendous', 'vouchsafed', 'repressing', 'remembered', 'personally', 'outrageous', 'Aaaaaaaaah', 'temptation', 'particular', 'chickening', 'conclusion', 'invincible', 'depressing', 'completely', 'unsingable', 'preserving', 'imprisoned', 'signifying', 'whispering', 'orangutans', 'undressing', 'government', 'Caerbannog', 'impeccable', 'shimmering', 'discovered', 'collective', 'successful', 'punishment', 'Everything', 'autonomous', 'Aauuggghhh', 'pestilence', 'everything', 'travellers', 'exploiting', 'understand', 'CHARACTERS', 'throughout', 'eisrequiem', 'absolutely', 'suggesting', 'interested', 'formidable', 'reasonable']</code></pre>
+<hr>
+<h3>The ever popular WordCloud</h3>
+<p>Utilizing the following code we can create the ever popular WordCloud. You will need the matplotlib, wordcloud, and os libraries installed.</p>
+<pre><code>>>> from os import path
+>>> from wordcloud import WordCloud
+>>> import matplotlib.pyplot as plt
+>>> dirname = path.dirname(__file__path__)
+>>> wordcloud = WordCloud().generate(text)
+>>> text = open(path.join(dirname, 'romeo.txt')).read()
+>>> wordcloud = WordCloud().generate(text)
+>>> plt.imshow(wordcloud, interpolation='bilinear')
+<matplotlib.image.AxesImage object at 0x0000011B9509EFD0>
+>>> plt.axis("off")
+(-0.5, 399.5, 199.5, -0.5)
+>>> plt.show()</code></pre>
+<hr>
+<p>You should see a result like the one below. You will need to simply save any text you want to create a WordCloud for in a .txt file. I have used my own romeo.txt file above which obviously utilizes the play Romeo & Juliet.</p>
+<hr>
+<center><img id="picimage" src="img/romeo_wordcloud.png"></center>
+
+</div>
+
+<hr>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>
