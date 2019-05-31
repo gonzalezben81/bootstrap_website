@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="dist/clipboard.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+#picimage{
+  height: 650px;
+  width: 1000px;
+}
+</style>
+<script>
+new ClipboardJS('.btn');
+</script>
+</head>
+<body style="background-color:white;">
+<a class="github-fork-ribbon" href="https://url.to-your.repo" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+<!---Jumbotron--->
+<div id="jumbotronflask" class="jumbotron">
+  <center>
+  <h2>Web Applications using Python and <a href="https://www.nltk.org/book/ch01.html#ex-set-comprehension-python"><strong>Flask</strong></a> </h2> 
+  </center>
+</div>
+<div class="container">
+  <center><h3>Building your first web application with Flask & Python</h3>  </center>
+  <p>In this tutorial we will be working through an example of building your first web application w/ Python utilizing Flask.</p>
+  <hr>
+  <h3><strong>Step One:</strong></h3>
+  <p>Install Python onto your system</p>
+  <hr>
+  <h3>Step Two:</h3>
+  <p>Use pip to install virtualenv & flask</p>
+  <pre><code>pip install virtualenv   pip install Flask</code></pre>
+  <h3>Step Three:</h3>
+  <p>Let's create our first python app script and call it first.py .</p>
+  <pre><code>from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return "This is a useful version of a flask app that I built on my own!"
+
+if __name__ == "__main__":
+    app.run()</code></pre>
+    <p>Let's breakdown what the above code means before we go any furhter. </p>
+
+</div>
+</br>
+<hr>
+<div class="container">
+
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>

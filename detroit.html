@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+
+</style>
+</head>
+<!---Beginning of page ----->
+<body>
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+ <!---   <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>--->
+  </div>
+</nav>
+<!---Jumbotron--->
+<div id="jumbotrondetroit" class="jumbotron"><center>
+  <h2>Predicting Crime in Detroit, Michigan</h2> 
+  <p>Predictive Analytics and utilizing gun data in Detroit, MI from 1961-1973.</p>
+  </center>
+</div>
+<div class="container">
+<p>The Detroit dataset is from a book called “Subset selection in Regression”. The original data was collected by J.C. Fisher and used in his paper “Homicide in Detroit: The Role of Firearms”, Criminology, vol.14, 387-400 (1976). The data collected represents homicide data in Detroit from 1961-1973. The data was obtained from <a href="http://lib.stat.cmu.edu/datasets/detroit"> Detroit Dataset</a> The following table lists each variable and their descriptions.</p>
+</div>
+<div class="container">
+  <h2>Detroit Dataset Description</h2>
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput6"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Variable</th>
+    <th onclick="sortTable(1)">Scale</th>
+    <th onclick="sortTable(2)">Predictor/Output</th>
+    <th onclick="sortTable(3)">Measurement</th>
+</thead>
+<tbody id="myTable6">
+  <tr>
+    <td>FTP(Full-Time Police)</td>
+    <td>Predict future homicides</td>
+    <td>Predictor</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>UEMP(Unemployment)</td>
+    <td>3.2%-11%</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>LIC(Hangun Licences)</td>
+    <td>156.4-1134.2</td>
+    <td>Predictor</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>GR(Handgun Registrations)</td>
+    <td>180.5-1029.8</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>CLEAR(Homicides cleared)</td>
+    <td>58.90-94.40</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>WM(White Males)</td>
+    <td>359647-558724</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>NMAN(Non-manufacturing workers)</td>
+    <td>539.1-819.8</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>GOV(# of government workers)</td>
+    <td>133.9-230.9</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>HE(Average Hourly Earnings)</td>
+    <td>2.91-5.76</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>WE(Average Weekly Earnings)</td>
+    <td>117.2-258.1</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>HOM(# of homicides)</td>
+    <td>8.52-52.33</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>ACC(Death rate in accidents)</td>
+    <td>39.17</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+  <tr>
+    <td>ASR(# of assaults)</td>
+    <td>218-473</td>
+    <td>Predictor/Output</td>
+    <td>Quantitative</td>
+  </tr>
+    </tbody>
+  </table>
+<hr>
+<h3><center>Methods of Analysis</center></h3>
+</br>
+<p><strong>Overview:</strong> For the Detroit dataset I have used several modeling techniques (Correlation, Simple Linear Regression, Multiple Linear Regression, Subset Selection, and Generalized Additive Models). The utilization of the plot function helped to determine what variables in the dataset would be significant and those which would not be significant. The correlation function was also used to determine which variables had a high correlation with the outcome variable of homicide. The models were chosen due to the continuous quantitative features of the Detroit dataset. Simple linear regression was utilized and helped to determine the number of predictors in the dataset that would be needed to predict homicide(s) in Detroit . GLM, LDA, QDA, and K-Nearest-Neighbors(KNN) were ignored due to the dataset having continuous variables which would not model well as low or high classification. Lastly the outcome variable is continuous and the above methods are utilized on qualitative outcome variables.</p>
+  <h2>Correlation</h2>
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput7"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Correlation: Scale = -1 to 1</th>
+</thead>
+<tbody id="myTable7">
+  <tr>
+    <td>Model 1</td>
+    <td>Correlation</td>
+    <td>HOM - FTP</td>
+    <td>0.964</td>
+  </tr>
+  <tr>
+    <td>Model 2</td>
+    <td>Correlation</td>
+    <td>HOM - UEMP</td>
+    <td>0.210</td>
+  </tr>
+  <tr>
+    <td>Model 3</td>
+    <td>Correlation</td>
+    <td>HOM - MAN</td>
+    <td>0.546</td>
+  </tr>
+  <tr>
+    <td>Model 4</td>
+    <td>Correlation</td>
+    <td>HOM - LIC</td>
+    <td>0.726</td>
+  </tr>
+  <tr>
+    <td>Model 5</td>
+    <td>Correlation</td>
+    <td>HOM - GR</td>
+    <td>0.816</td>
+  </tr>
+  <tr>
+    <td>Model 6</td>
+    <td>Correlation</td>
+    <td>HOM - CLEAR</td>
+    <td>-0.968</td>
+  </tr>
+  <tr>
+    <td>Model 7</td>
+    <td>Correlation</td>
+    <td>HOM - WM</td>
+    <td>-0.952</td>
+  </tr>
+  <tr>
+    <td>Model 8</td>
+    <td>Correlation</td>
+    <td>HOM - NMAN</td>
+    <td>0.955</td>
+  </tr>
+  <tr>
+    <td>Model 9</td>
+    <td>Correlation</td>
+    <td>HOM - GOV</td>
+    <td>0.958</td>
+  </tr>
+  <tr>
+    <td>Model 10</td>
+    <td>Correlation</td>
+    <td>HOM - HE</td>
+    <td>0.913</td>
+  </tr>
+  <tr>
+    <td>Model 11</td>
+    <td>Correlation</td>
+    <td>HOM - WE</td>
+    <td>0.888</td>
+  </tr>
+  <tr>
+    <td>Model 12</td>
+    <td>Correlation</td>
+    <td>HOM - ACC</td>
+    <td>-0.204</td>
+  </tr>
+  <tr>
+    <td>Model 13</td>
+    <td>Correlation</td>
+    <td>HOM - ASR</td>
+    <td>0.824</td>
+  </tr>
+</table>
+      </tbody>
+  </table>
+  <p><strong>Best Model Correlation</strong> = Model 1- HOM~FTP. The correlation of 0.964 is the best predictor of correlation between homicide and all of the other predictors.</p>
+</br>
+<hr>
+<h3>Simple Linear Regression</h3>
+<p><center><strong>Simple Linear Regression Table - Detroit Dataset</strong></center></p>
+</br>
+</br>
+<input type="text" id="myInput8"  placeholder="Search for variable.." title="Type in a variable"> 
+  <table class="table table-hover">
+  <thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Multiple R-Squared</th>
+    <th onclick="sortTable(4)">Adjusted R-Squared</th>
+  </thead>
+  <tbody id="myTable8">
+    <tr>
+    <td>Model 14</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - FTP</td>
+    <td>0.93</td>
+    <td>0.923</td>
+  </tr>
+  <tr>
+    <td>Model 15</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - UEMP</td>
+    <td>0.04</td>
+    <td>-0.04</td>
+  </tr>
+  <tr>
+    <td>Model 16</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - MAN</td>
+    <td>0.30</td>
+    <td>0.23</td>
+  </tr>
+  <tr>
+    <td>Model 17</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - LIC</td>
+    <td>0.53</td>
+    <td>0.48</td>
+  </tr>
+  <tr>
+    <td>Model 18</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - GR</td>
+    <td>0.67</td>
+    <td>0.636</td>
+  </tr>
+  <tr>
+    <td>Model 19</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - CLEAR</td>
+    <td>0.94</td>
+    <td>0.93</td>
+  </tr>
+  <tr>
+    <td>Model 20</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - WM</td>
+    <td>0.91</td>
+    <td>0.89</td>
+  </tr>
+  <tr>
+    <td>Model 21</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - NMAN</td>
+    <td>0.91</td>
+    <td>0.91</td>
+  </tr>
+  <tr>
+    <td>Model 22</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - GOV</td>
+    <td>0.92</td>
+    <td>0.91</td>
+  </tr>
+  <tr>
+    <td>Model 23</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - HE</td>
+    <td>0.83</td>
+    <td>0.81</td>
+  </tr>
+  <tr>
+    <td>Model 24</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - WE</td>
+    <td>0.79</td>
+    <td>0.76</td>
+  </tr>
+  <tr>
+    <td>Model 25</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - ACC</td>
+    <td>0.04</td>
+    <td>-0.04</td>
+  </tr>
+  <tr>
+    <td>Model 26</td>
+    <td>Simple Linear Regression</td>
+    <td>HOM - ASR</td>
+    <td>0.68</td>
+    <td>0.65</td>
+  </tr>
+    </tbody>
+  </table>
+<p><strong>Best Model Simple Linear Regression:</strong> The best model is Model 19 and has an adjusted r-squared of 0.93.</p>
+<pre><code>summary(lm.fitdetroit6)
+
+Call:
+lm(formula = HOM ~ CLEAR, data = Detroit_Data_Ben_Gonzalez)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-7.385 -1.636 -1.059  2.804  8.737 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 127.22163    8.00767   15.89 6.21e-09 ***
+CLEAR        -1.25352    0.09724  -12.89 5.55e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 4.264 on 11 degrees of freedom
+Multiple R-squared:  0.9379,	Adjusted R-squared:  0.9323 
+F-statistic: 166.2 on 1 and 11 DF,  p-value: 5.553e-08</code></pre>
+<center><img src="img/homicide.png"></center>
+<hr>
+<h3><center><strong>Multiple Linear Regression Table - Detroit Dataset</strong></center></h3>
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput9"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Multiple R-Squared</th>
+    <th onclick="sortTable(3)">Adjusted R-Squared</th>
+    <th onclick="sortTable(3)">p-value</th>
+</thead>
+<tbody id="myTable9">
+  <tr>
+    <td>Model 27</td>
+    <td>Multiple Linear Regression</td>
+    <td>Outcome=HOM Predictors=FTP, MAN, LIC, GR,WM,NMAN,GOV,HE,WE,ASR</td>
+    <td>0.998</td>
+    <td>0.9986</td>
+    <td>0.001188</td>
+  </tr>
+  <tr>
+    <td>Model 28</td>
+    <td>Multiple Linear Regression</td>
+    <td>Outcome=HOM Predictors=NMAN, GOV, HE, WE, ACC, ASR</td>
+    <td>0.9912</td>
+    <td>0.9823</td>
+    <td>6.829E-06</td>
+  </tr>
+  <tr>
+    <td>Model 29</td>
+    <td>Multiple Linear Regression</td>
+    <td>Outcome=HOM Predictors=LIC,FTP, GR,HE,WE,NMAN, ASR</td>
+    <td>0.9936</td>
+    <td>0.9847</td>
+    <td>3.512E-05</td>
+  </tr>
+  </table>
+    </tbody>
+  </table>
+  
+  <p><center><strong>Best Model Multiple Linear Regression:</strong> The best model for simple linear regression is Model 27 and has the highest adjusted r-squared 0.9986. The model also has a low p-value of 0.001188.</center></p>
+  
+  <pre><code>Call:
+lm(formula = HOM ~ FTP + MAN + LIC + GR + WM + NMAN + GOV + HE + 
+    WE + ASR, data = Detroit_Data_Ben_Gonzalez)
+
+Residuals:
+        1         2         3         4         5         6         7         8         9        10        11 
+ 0.134676 -0.119242  0.035018  0.156071 -0.527640  0.528712 -0.262829  0.140073 -0.115613 -0.167151  0.101167 
+       12        13 
+-0.002143  0.098901 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)  
+(Intercept) -2.021e+02  4.986e+01  -4.054   0.0558 .
+FTP          2.933e-02  2.345e-02   1.251   0.3375  
+MAN         -1.150e-01  1.832e-02  -6.279   0.0244 *
+LIC          2.704e-02  4.221e-03   6.406   0.0235 *
+GR          -4.355e-03  2.362e-03  -1.844   0.2066  
+WM           2.385e-04  6.509e-05   3.664   0.0671 .
+NMAN         1.147e-01  3.824e-02   3.000   0.0954 .
+GOV          2.740e-01  9.392e-02   2.917   0.1001  
+HE          -9.155e+00  3.038e+00  -3.013   0.0947 .
+WE           4.393e-01  7.687e-02   5.714   0.0293 *
+ASR         -1.437e-02  1.602e-02  -0.897   0.4644  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6188 on 2 degrees of freedom
+Multiple R-squared:  0.9998,	Adjusted R-squared:  0.9986 
+F-statistic: 841.1 on 10 and 2 DF,  p-value: 0.001188</code></pre>
+<hr>
+<h3>Subset Selection Models</h3>
+
+<p><center><strong>Subset Selection Models Table - Detroit Dataset</strong></center></p>
+
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput10"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">R.S.Q</th>
+    <th onclick="sortTable(3)">Adjusted R<sup>2</sup></th>
+    <th onclick="sortTable(3)">Min B.I.C.</th>
+</thead>
+<tbody id="myTable10">
+  <tr>
+    <td>Model 30</td>
+    <td>Subset Model Selection Method=Forward</td>
+    <td>Outcome=HOM Predictors=All Other Variables</td>
+    <td>0.999</td>
+    <td>0.9989</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>Model 31</td>
+    <td>Subset Model Selection NVMAX=12</td>
+    <td>Outcome=HOM Predictors=All Other Variables</td>
+    <td>1.000</td>
+    <td>0.9999</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>Model 32</td>
+    <td>Subset Model Selection Method=Backward</td>
+    <td>Outcome=HOM Predictors=All Other Variables</td>
+    <td>0.999</td>
+    <td>0.999</td>
+    <td>8</td>
+  </tr>
+    </tbody>
+  </table>
+  
+  <p><strong>Best Model Subset Selection:</strong> The best subset model selection is Model 32 utilizing the backward method. The model utilizes the lowest BIC and has the highest adjusted r-squared 0.999 utilizing the least number of variables.</p>
+  
+  <center><img src="img/detroit_model3_bic.png"></center>
+  
+  <center><img src="img/detroit_model3_adjrsquared.png"></center>
+  
+  <hr>
+  <h3>Generalized Additive Models</h3>
+  
+  <p><center><strong>Generalized Additive Models (GAMs) Approach - Detroit Dataset</strong></center></p>
+  
+    <p>Type in the variable search term below:</p>
+<input type="text" id="myInput11"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Total Predictors</th>
+    <th onclick="sortTable(4)">Multiple R<sup>2</sup></th>
+    <th onclick="sortTable(5)">Adjusted R<sup>2</sup></th>
+</thead>
+<tbody id="myTable11">
+  <tr>
+    <td>Model 33</td>
+    <td>Generalized Additive Model Splines Regression</td>
+    <td>Outcome=HOM Predictors=UEMP,LIC,WE,HE,ASR,NMAN,MAN,ASR</td>
+    <td>8</td>
+    <td>0.998</td>
+    <td>0.996</td>
+    <td>6.714e-07</td>
+  </tr>
+  <tr>
+    <td>Model 34</td>
+    <td>Generalized Additive Model Splines Regression</td>
+    <td>Outcome=HOM Predictors=MAN,LIC,WM,NMAN,HE,WE</td>
+    <td>6</td>
+    <td>0.997</td>
+    <td>0.994</td>
+    <td>2.056e-07</td>
+  </tr>
+  <tr>
+    <td>Model 35</td>
+    <td>Generalized Additive Model Splines Regression</td>
+    <td>Outcome=HOM Predictors=FTP,LIC,GR,NMAN,GOV,HE,WE,ASR</td>
+    <td>8</td>
+    <td>0.994</td>
+    <td>0.984</td>
+    <td>0.002583</td>
+  </tr>
+  <tr>
+    <td>Model 36</td>
+    <td>Generalized Additive Model Polynomial Regression</td>
+    <td>Outcome=HOM Predictors=FTP,LIC,NMAN,GOV^2,HE^3,WE,ASR</td>
+    <td>7</td>
+    <td>0.999</td>
+    <td>0.9944</td>
+    <td>0.004688</td>
+  </tr>
+  <tr>
+    <td>Model 37</td>
+    <td>Generalized Additive Model Polynomial Regression</td>
+    <td>Outcome=HOM Predictors=FTP^2,GR,LIC^2,NMAN,GOV,HE,WE,ASR</td>
+    <td>8</td>
+    <td>0.998</td>
+    <td>0.993</td>
+    <td>0.005753</td>
+  </tr>
+    </tbody>
+  </table>
+  
+  <p><strong>Best Model Generalized Additive Model:</strong> The best model for the generalized additive model is Model 36 that utilizes polynomial regression. The model utilizes the least amount of predictors of all the generalized additive models. The model has the highest adjusted r-squared of 0.9944 that utilizes the least number of predictors. The p-values is also low at 0.004688.</p>
+  <pre><code>Analysis of Variance Table
+
+Response: HOM
+             Df  Sum Sq Mean Sq   F value    Pr(>F)    
+FTP           1 2994.37 2994.37 1978.9471 0.0005049 ***
+LIC           1  151.19  151.19   99.9199 0.0098602 ** 
+NMAN          1   30.18   30.18   19.9431 0.0466611 *  
+poly(GOV, 2)  2   18.27    9.13    6.0363 0.1421203    
+poly(HE, 3)   3   23.30    7.77    5.1325 0.1673830    
+WE            1    0.65    0.65    0.4326 0.5782914    
+ASR           1    0.80    0.80    0.5300 0.5423085    
+Residuals     2    3.03    1.51                        
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+> summary(gam.detroitmodel44)
+
+Call:
+lm(formula = HOM ~ FTP + LIC + NMAN + poly(GOV, 2) + poly(HE, 
+    3) + WE + ASR, data = Detroit_Data_Ben_Gonzalez)
+
+Residuals:
+        1         2         3         4         5         6         7         8         9        10        11        12 
+ 0.008567 -0.163223  0.199979 -0.520727  0.990593 -0.700423  0.534176 -0.012935 -0.837255  0.361341  0.277549 -0.149193 
+       13 
+ 0.011550 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)   -70.16794  127.52402  -0.550    0.637
+FTP            -0.29850    0.31798  -0.939    0.447
+LIC             0.03193    0.01821   1.753    0.222
+NMAN            0.12534    0.18927   0.662    0.576
+poly(GOV, 2)1   1.33967   48.34475   0.028    0.980
+poly(GOV, 2)2  40.96870   38.86995   1.054    0.402
+poly(HE, 3)1  -42.82354   75.21346  -0.569    0.627
+poly(HE, 3)2   -3.68839   10.90049  -0.338    0.767
+poly(HE, 3)3   -3.24754    7.03880  -0.461    0.690
+WE              0.54739    0.55821   0.981    0.430
+ASR            -0.02719    0.03734  -0.728    0.542
+
+Residual standard error: 1.23 on 2 degrees of freedom
+Multiple R-squared:  0.9991,	Adjusted R-squared:  0.9944 
+F-statistic: 212.7 on 10 and 2 DF,  p-value: 0.004688</code></pre>
+
+<hr>
+<pre><code>> summary(gam.detroitmodel44)
+
+Call:
+lm(formula = HOM ~ FTP + LIC + NMAN + poly(GOV, 2) + poly(HE, 
+    3) + WE + ASR, data = Detroit_Data_Ben_Gonzalez)
+
+Residuals:
+        1         2         3         4         5         6         7         8         9        10        11        12 
+ 0.008567 -0.163223  0.199979 -0.520727  0.990593 -0.700423  0.534176 -0.012935 -0.837255  0.361341  0.277549 -0.149193 
+       13 
+ 0.011550 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)   -70.16794  127.52402  -0.550    0.637
+FTP            -0.29850    0.31798  -0.939    0.447
+LIC             0.03193    0.01821   1.753    0.222
+NMAN            0.12534    0.18927   0.662    0.576
+poly(GOV, 2)1   1.33967   48.34475   0.028    0.980
+poly(GOV, 2)2  40.96870   38.86995   1.054    0.402
+poly(HE, 3)1  -42.82354   75.21346  -0.569    0.627
+poly(HE, 3)2   -3.68839   10.90049  -0.338    0.767
+poly(HE, 3)3   -3.24754    7.03880  -0.461    0.690
+WE              0.54739    0.55821   0.981    0.430
+ASR            -0.02719    0.03734  -0.728    0.542
+
+Residual standard error: 1.23 on 2 degrees of freedom
+Multiple R-squared:  0.9991,	Adjusted R-squared:  0.9944 
+F-statistic: 212.7 on 10 and 2 DF,  p-value: 0.004688</code></pre>
+
+<h3>Tree Based Methods</h3>
+<p><center><strong>Tree Based Methods - Detroit Dataset</strong></center></p>
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput12"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Mean of Squared Residuals</th>
+    <th onclick="sortTable(4)">Minimum M.S.E.</th>
+    <th onclick="sortTable(5)">% Variance Explained</th>
+    <th onclick="sortTable(6)">Optimal Configuration</th>
+    <th onclick="sortTable(7)">Optimal Trees/Interaction F-Statistic</th>
+</thead>
+<tbody id="myTable12">
+  <tr>
+    <td>Model 38</td>
+    <td>Random Forest</td>
+    <td>Outcome=HOM Predictors=All other variables</td>
+    <td>216.2263</td>
+    <td>212.892</td>
+    <td>-8.47</td>
+    <td>7 Predictors</td>
+    <td>10 Trees</td>
+  </tr>
+  <tr>
+    <td>Model 39</td>
+    <td>Random Forest K-Fold CV Approach</td>
+    <td>Outcome=HOM Predictors=All other variables</td>
+    <td>216.2263</td>
+    <td>5.84121</td>
+    <td>-8.47</td>
+    <td>8 Predictors</td>
+    <td>3 Trees</td>
+  </tr>
+  <tr>
+    <td>Model 40</td>
+    <td>Random Forest Boosting K-Fold CV Approach</td>
+    <td>Outcome=HOM Predictors=All other variables</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  </tr>
+  <tr>
+    <td>Model 41</td>
+    <td>Linear Model K-Fold CV Approach</td>
+    <td>Outcome=HOM Predictors=All other variables</td>
+    <td>N/A</td>
+    <td>210.021</td>
+    <td>N/A</td>
+    <td>4 Predictors</td>
+    <td>9 Trees</td>
+  </tr>
+    </tbody>
+  </table>
+  <p><strong>Note: N/A = Sample Size too small to utilize method</strong></p>
+  
+  <p><strong>Best Model Tree Based Methods:</strong> The best model of the tree based methods is Model 41 the Linear Model K-Fold CV Approach Model. While it has a higher minimum MSE. The other models have a negative percentage of the variance explained for the data. The optimal number of predictors is 4 and the optimal number of trees is 9.</p>
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+
+<hr>
+<h3>Validation Set Approach</h3>
+
+<p><center><strong>Validation Set Approach - Detroit Dataset</strong></center></p>
+
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput13"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Minimum M.S.E.</th>
+</thead>
+<tbody id="myTable13">
+  <tr>
+    <td>Model 42</td>
+    <td>Cross Validation Approach</td>
+    <td>Outcome=HOM Predictor=LIC</td>
+    <td>180.6076</td>
+  </tr>
+  <tr>
+    <td>Model 43</td>
+    <td>K-Fold Cross Validation</td>
+    <td>Outcome=HOM Predictor=LIC</td>
+    <td>108.0558</td>
+  </tr>
+  <tr>
+    <td>Model 44</td>
+    <td>K-Fold Cross Validation</td>
+    <td>Outcome=HOM Predictor=LIC</td>
+    <td>179.4411</td>
+  </tr>
+    </tbody>
+  </table>
+
+<p><strong>Best Model Validation Set Approach:</strong> The best model for the validation set approach is Model 43. The K-Fold Cross Validation Approach has the lowest MSE 108.0558 out of all of the models in the set.</p>
+
+<pre><code>> cv.error
+
+[1]  182.3850  108.0558  592.6336  519.8474 1318.5811</code></pre>
+
+<hr>
+<h3>Results: Best Model Selection - Detorit Dataset</h3>
+
+<p><center><strong>Best Model Selection - Detroit Dataset</strong></center></p>
+
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput14"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+<thead>
+    <th onclick="sortTable(0)">Model</th>
+    <th onclick="sortTable(1)">Learning Technique</th>
+    <th onclick="sortTable(2)">Variables Used</th>
+    <th onclick="sortTable(3)">Correlation(s)/MSE/RSQ/Adjusted R<sup>2</sup>/%Variance Explained</th>
+    <th onclick="sortTable(2)">AIC/BIC/CP</th>
+    <th onclick="sortTable(2)">Optimal Configuration/F-Statistic/p-value</th>
+</thead>
+<tbody id="myTable14">
+  <tr>
+    <td>Model 1</td>
+    <td>Simple Linear Regression</td>
+    <td>Outcome=HOM Predictor=FTP</td>
+    <td>Correlation=0.964</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Model 2</td>
+    <td>Multiple Linear Regression</td>
+    <td>Outcome=HOM Predictors=FTP, MAN, LIC, GR,WM,NMAN,GOV,HE,WE,ASR</td>
+    <td>Multiple R-Squared=0.9998 ADJR2=0.9986</td>
+    <td></td>
+    <td>p-value=0.001188</td>
+  </tr>
+  <tr>
+    <td>Model 3</td>
+    <td>Subset Selection Method=Backward</td>
+    <td>Outcome=HOM Predictors=All Other Variables</td>
+    <td>Multiple R-Squared=0.999 ADJR2=0.999</td>
+    <td>BIC = 8</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Model 4</td>
+    <td>Generalized Additive Model / Polynomial Regression</td>
+    <td>Outcome=HOM Predictors=FTP,LIC,NMAN,GOV^2,HE^3,WE,ASR</td>
+    <td>Multiple R-Squared=0.999 ADJR2=0.9944</td>
+    <td></td>
+    <td>p-value=0.004688</td>
+  </tr>
+  <tr>
+    <td>Model 5</td>
+    <td>Tree Based Methods Linear Model K-Fold CV Approach</td>
+    <td>Outcome=HOM Predictors=All other variables</td>
+    <td></td>
+    <td></td>
+    <td>Optimal Configuration= 4 Predictors 9 Trees</td>
+  </tr>
+  <tr>
+    <td>Model 6</td>
+    <td>Validation Set Approach</td>
+    <td>Outcome=HOM Predictor=LIC</td>
+    <td>MSE = 108.0558</td>
+    <td></td>
+    <td></td>
+  </tr>
+    </tbody>
+  </table>
+
+<pre><code>> anova(gam.detroitmodel44)
+
+Analysis of Variance Table
+
+Response: HOM
+             Df  Sum Sq Mean Sq   F value    Pr(>F)    
+FTP           1 2994.37 2994.37 1978.9471 0.0005049 ***
+LIC           1  151.19  151.19   99.9199 0.0098602 ** 
+NMAN          1   30.18   30.18   19.9431 0.0466611 *  
+poly(GOV, 2)  2   18.27    9.13    6.0363 0.1421203    
+poly(HE, 3)   3   23.30    7.77    5.1325 0.1673830    
+WE            1    0.65    0.65    0.4326 0.5782914    
+ASR           1    0.80    0.80    0.5300 0.5423085    
+Residuals     2    3.03    1.51                        
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<hr>
+<pre><code>summary(gam.detroitmodel44)
+
+
+Call:
+lm(formula = HOM ~ FTP + LIC + NMAN + poly(GOV, 2) + poly(HE, 
+    3) + WE + ASR, data = Detroit_Data_Ben_Gonzalez)
+
+Residuals:
+        1         2         3         4         5         6         7         8         9        10        11        12 
+ 0.008567 -0.163223  0.199979 -0.520727  0.990593 -0.700423  0.534176 -0.012935 -0.837255  0.361341  0.277549 -0.149193 
+       13 
+ 0.011550 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)
+(Intercept)   -70.16794  127.52402  -0.550    0.637
+FTP            -0.29850    0.31798  -0.939    0.447
+LIC             0.03193    0.01821   1.753    0.222
+NMAN            0.12534    0.18927   0.662    0.576
+poly(GOV, 2)1   1.33967   48.34475   0.028    0.980
+poly(GOV, 2)2  40.96870   38.86995   1.054    0.402
+poly(HE, 3)1  -42.82354   75.21346  -0.569    0.627
+poly(HE, 3)2   -3.68839   10.90049  -0.338    0.767
+poly(HE, 3)3   -3.24754    7.03880  -0.461    0.690
+WE              0.54739    0.55821   0.981    0.430
+ASR            -0.02719    0.03734  -0.728    0.542
+
+Residual standard error: 1.23 on 2 degrees of freedom
+Multiple R-squared:  0.9991,	Adjusted R-squared:  0.9944 
+F-statistic: 212.7 on 10 and 2 DF,  p-value: 0.004688</code></pre>
+
+<p><strong>Best Model Selection:</strong> The best model for the Detroit Dataset is Model 4 in the best model selection table. The learning technique is the generalized additive model-polynomial regression. This model has the highest adjusted r-squared utilizing the least amount of predictors at 7. The p-value is 0.004688 and is the lowest for this number of predictors. The significant predictors for the outcome variable are FTP(full time police), LIC( Gun Licenses), and NMAN(Non-Manufacturing Jobs).</p>
+<hr>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>

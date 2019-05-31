@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+
+</style>
+</head>
+<!---Beginning of page ----->
+<body>
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+<!---    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>--->
+  </div>
+</nav>
+<!---Jumbotron--->
+<div id="jumbotrondodgers" class="jumbotron"><center>
+  <h2>Dodgers Bobblehead Predictions</h2> 
+  <p>Predictive Analytics and utilizing the free giveaways at Dodgers baseball games.</p>
+  </center>
+</div>
+<div class="container">
+<p>The following analysis is of the dodgers baseball dataset received from Professor Keith
+Hacke for Contemporary Analytics 5750. The dataset looks at the promotional use of items such
+as fireworks, caps, shirts, and bobblehead’s as giveaways. The purpose of the following analysis
+is to see if the use of giveaways has an impact on the attendance of individuals who attend
+baseball games at Dodger’s stadium. The following table describes the variables that are in the
+data set. The following predictors were used to determine if the use of bobblehead’s, caps,
+fireworks, or shirts affected the attendance of individuals at dodger’s games. The overall results
+from the analysis show that utilizing both fireworks and bobblehead’s as a giveaway on the same
+day has the best effect on attendance. Certain variables such as the day of the week and the
+temperature also impact attendance as well. The following tables list the variables and their
+description for the Dodgers dataset.</p>
+</div>
+<div class="container">
+  <h2>Dodgers Dataset Description</h2>
+  <p>Type in the variable search term below:</p>
+<input type="text" id="myInput"  placeholder="Search for variable.." title="Type in a variable">  
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">Variable</th>
+        <th onclick="sortTable(2)">Description</th>
+        <th onclick="sortTable(1)">Quanitative or Qualitative</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+      <tr>
+        <td>Month</td>
+        <td>Month of the year</td>
+        <td>Qualitative</td>
+      </tr>
+      <tr>
+        <td>Day</td>
+        <td>Day of Month</td>
+        <td>Qualitative</td>
+      </tr>
+      <tr>
+        <td>Attend</td>
+        <td>Attendace at game</td>
+        <td>Quantitative</td>
+      </tr>
+            <tr>
+        <td>Opponent</td>
+        <td>Opponent played in game</td>
+        <td>Qualitative</td>
+      </tr>
+       <tr>
+        <td>Temp</td>
+        <td>Temperature at time of game</td>
+        <td>Quantitative</td>
+      </tr>
+	  <tr>
+        <td>Day/Night</td>
+        <td>Time of game (day or night)</td>
+        <td>Qualitative</td>
+      </tr>
+	  <tr>
+        <td>Cap</td>
+        <td>Cap given away (yes or no)</td>
+        <td>Qualitative</td>
+      </tr>
+	  <tr>
+        <td>Shirt</td>
+        <td>Shirt given away (yes or no)</td>
+        <td>Qualitative</td>
+      </tr>
+	  	  <tr>
+        <td>Fireworks</td>
+        <td>Fireworks used at game (yes or no)</td>
+        <td>Qualitative</td>
+      </tr>
+	  	  <tr>
+        <td>Bobblehead</td>
+        <td>Bobblehead given away (yes or no)</td>
+        <td>Qualitative</td>
+      </tr>
+	  	  <tr>
+        <td>Ordered day of week</td>
+        <td>Day of week (Mon, Tues, etc...)</td>
+        <td>Qualitative</td>
+      </tr>
+	  	  <tr>
+        <td>Ordered Month</td>
+        <td>Month of year (Apr, Aug, etc...)</td>
+        <td>Qualitative</td>
+      </tr>
+	  	  <tr>
+        <td>Temp (high/low)</td>
+        <td>Temperature (Cold, Mild, Hot)</td>
+        <td>Qualitative</td>
+      </tr>
+    </tbody>
+  </table>
+<hr>
+<center>
+  </br>
+  <hr>
+<h3>Dodgers' Dataset Visualizations</h3>
+      <h4><b>Temperature at time of game</b></h4>
+      <img src="img/dodgers_temperature.png">
+      <p>The temperature visualization shows that the temperature at the time of the game is a good
+indicator of the attendance by individuals at the game.</p>
+      </center>
+      <hr>
+      <center>
+      <h4><b>Attendance</b></h4>
+      <img src="img/dodgers_attendance.png">
+      <hr>
+      <p>The attendance by day of week chart shows that the highest number of individuals attended games on Tuesdays.</p>
+      </center>
+      <hr>
+            <center>
+      <h4><b>Bobblehead Attendance</b></h4>
+      <img src="img/dodgers_bobblehead_attendance.png">
+      <p>The bobblehead by attendance chart shows that more individuals attended games when a bobblehead was given away than if there was no bobblehead given away.</p>
+      </center>
+      <hr>
+            <center>
+      <h4><b>T-shirt Giveaway</b></h4>
+      <img src="img/dodgers_tshirt_giveaway.png">
+      <p>The t-shirt by attendance chart shows that individuals were more likely to attend a game if a tshirt was given away, versus if a t-shirt was not given away.</p>
+      </center>
+      <hr>
+      <center>
+      <h4><b>Fireworks at game</b></h4>
+      <img src="img/dodgers_fireworks_attendance.png">
+      </center>
+      <p>The fireworks by attendance chart shows that individuals were neither more nor less likely to attend a game with fireworks present. This may be due to fireworks being used on holidays, weekends, or after a win against certain teams.</p>
+      <hr>
+      <center>
+      <h4><b>Baseball Caps given away</b></h4>
+      <img src="img/dodgers_cap_giveaway.png">
+      <p>The cap by attendance chart shows that individuals were not more or less likely to attend a game if a cap was being given away at the game.</p>
+      </center>
+      <hr>
+      <h3>What days are promotions used?</h3>
+        <p>Type in the variable search term below:</p>
+<input type="text" id="myInput2"  placeholder="Search for variable.." title="Type in a variable">  
+        <table class="table">
+    <thead>
+      <tr>
+        <th>Promotion Used</th>
+        <th>Mon</th>
+        <th>Tues</th>
+        <th>Wed</th>
+        <th>Thurs</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+        <th align="center">Total Used</th>
+      </tr>
+      </thead>
+      <tbody id="myTable2">
+        <tr>
+          <td>Bobblehead</td>
+          <td>0</td>
+          <td>6</td>
+          <td>0</td>
+          <td>2</td>
+          <td>0</td>
+          <td>2</td>
+          <td>1</td>
+          <td align="center">11</td>
+        </tr>
+        <tr>
+          <td>Cap</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td align="center">2</td>
+        </tr>
+        <tr>
+          <td>Shirt</td>
+          <td>1</td>
+          <td>1</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td align="center">3</td>
+        </tr>
+        <tr>
+          <td>Fireworks</td>
+          <td>0</td>
+          <td>0</td>
+          <td>1</td>
+          <td>0</td>
+          <td>13</td>
+          <td>0</td>
+          <td>0</td>
+          <td align="center">14</td>
+        </tr>
+        <tr>
+          <td>Total per Day</td>
+          <td>1</td>
+          <td>8</td>
+          <td>1</td>
+          <td>2</td>
+          <td>13</td>
+          <td>2</td>
+          <td>3</td>
+          <td align="center">31</td>
+        </tr>
+      </tbody>
+      </table>
+    <p>The above table shows that the most used promotional item was fireworks on Fridays, but these were no more likely to affect attendance according to the previous charts. The next most giveaways were given away on Tuesday, and these were the bobblehead giveaways. This shows that bobblehead giveaways may affect attendance more than any other promotional item.</p>
+    <hr>
+  <center><h4>Dodgers Dataset: Conditional Variable Charts</h4></center>
+      <center>
+      <h4><b>Fireworks by Temperature</b></h4>
+      <img src="img/dodgers_fireworks_lattice.png">
+      <p>The fireworks chart shows that more individuals were likely to attend a night game with clear skies if fireworks were present than any other time of day or condition of the skies.</p>
+      </center>
+      <hr>
+            <center>
+      <h4><b>Cap giveaways by Temperature</b></h4>
+      <img src="img/dodgers_cap_lattice.png">
+      <p>The cap chart shows that more individuals attended a game with a cap give away when the conditions were both day and the skies were clear.</p>
+      </center>
+      <hr>
+      <center>
+      <h4><b>T-shrit giveaways by Temperature</b></h4>
+      <img src="img/dodgers_shirt_lattice.png">
+      <p>The shirt chart shows that more individuals attended a night game that had clear skies if a shirt was being given away.</p>
+      </center>
+      <hr>
+            <center>
+      <h4><b>T-shrit giveaways by Temperature</b></h4>
+      <img src="img/dodgers_bobblehead_lattice.png">
+      </center>
+      <p>The bobblehead chart shows that more individuals attended either a night game whether it was clear or cloudy if a bobblehead was being given away. This chart also shows that bobblehead’s have an impact on the number of individuals who attend games.</p>
+      <hr>
+      <center>
+      <h4>Dodgers Lattice Plots</h4>
+      <img src="img/dodgers_opponent_lattice.png">
+      <hr>
+      <img src="img/dodgers_opponent_shirt_lattice.png">
+      <hr>
+      <img src="img/dodgers_opponent_fireworks_lattice.png">
+      <hr>
+      <img src="img/dodgers_opponent_cap_lattice.png">
+      <hr>
+      <img src="img/dodgers_temp_lattice.png">
+      <hr>
+      </center>
+    </div>
+<!---Linear Models--->
+<div class="container">
+  <center>
+    <h3>Linear Models</h3>
+    </center>
+    </br>
+    </br>
+    <center><h4>Dodgers Linear Models: Single Giveaways</h4></center>
+    <input type="text" id="myInput3" onkeyup="myFunction()" placeholder="Search table.." title="Type in a variable">
+    <center>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Model</th>
+        <th>Multiple R<sup>2</sup></th>
+        <th>Adjusted R<sup>2</sup></th>
+        <th>P-Value</th>
+        <th>Estimated Effect on Attendance</th>
+      </tr>
+      </thead>
+      <tbody id="myTable3">
+        <tr>
+          <td>Bobblehead Linear Model</td>
+          <td>0.54</td>
+          <td>0.46</td>
+          <td>2.083e-7</td>
+          <td align="center">10,715</td>
+        </tr>
+        <tr>
+          <td>Cap Linear Model</td>
+          <td>0.45</td>
+          <td>0.34</td>
+          <td>4.439-e05</td>
+          <td align="center">-10,983</td>
+        </tr>
+        <tr>
+          <td>Fireworks Linear Model</td>
+          <td>0.45</td>
+          <td>0.34</td>
+          <td>4.593-05</td>
+          <td align="center">15,658</td>
+        </tr>
+        <tr>
+          <td>Shirt Linear Model</td>
+          <td>0.42</td>
+          <td>0.31</td>
+          <td>0.0001687</td>
+          <td align="center">4,720</td>
+        </tr>
+      </tbody>
+    </table>
+  </center>
+     <p>Utilizing linear regression with one promotional item shows that utilizing bobblehead’s as a giveaway has the best R-squared at 0.46 and has an estimated effect on attendance at 10,715. One interesting linear model is that the use of fireworks will have an estimated effect on attendance at 15,658. The fireworks may be due to the fact they are mainly used on Friday’s, with the variable day of week being a significant predict itself. Utilizing bobblehead’s on Friday’s in turn may yield even higher attendance at the dodger’s games.</p> 
+  
+</div>
+<hr>
+<div class="container">
+  <center>
+  <h4>Dodgers Linear Models: Multiple Giveaways</h4></center>
+  <input type="text" id="myInput4" onkeyup="myFunction()" placeholder="Search for variable.." title="Type in a variable">
+  <center>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Mutliple R<sup>2</sup></th>
+        <th>Adjusted R<sup>2</sup></th>
+        <th>P-Value</th>
+        <th align="center">Estimated Effect on Attendance</th>
+      </tr>
+      </thead>
+      <tbody id="myTable4">
+        <tr>
+          <td>Bobblehead & T-Shirt</td>
+          <td>0.56</td>
+          <td>0.47</td>
+          <td>1.599e-07</td>
+          <td align="center">11,134</td>
+        </tr>
+        <tr>
+          <td>Bobblehead & Cap</td>
+          <td>0.56</td>
+          <td>0.46</td>
+          <td>2.222e-07</td>
+          <td align="center">9,932</td>
+        </tr>
+        <tr>
+          <td>Bobblehead & Fireworks</td>
+          <td>0.59</td>
+          <td>0.50</td>
+          <td>2.848e-08</td>
+          <td align="center">10,995</td>
+        </tr>
+        <tr>
+          <td>Cap & Shirt</td>
+          <td>0.46</td>
+          <td>0.34</td>
+          <td>6.0196e-05</td>
+          <td align="center">4,415</td>
+        </tr>
+        <tr>
+          <td>Cap & Fireworks</td>
+          <td>0.48</td>
+          <td>0.37</td>
+          <td>1.648e-05</td>
+          <td align="center">15,063</td>
+        </tr>
+        <tr>
+          <td>Shirt & Fireworks</td>
+          <td>0.46</td>
+          <td>0.34</td>
+          <td>6.41e-05</td>
+          <td align="center">15,394</td>
+        </tr>
+      </tbody>
+  </table>
+  </center>
+  <p> For the dodgers dataset when using multiple giveaways at one time, the dual giveaways of bobblehead’s and fireworks creates the best fitting model. The estimated effect on attendance is 10995 with the highest adjusted r-squared value of .50. The only other model that has a greater effect on attendance is the shirt and fireworks model. If the dodgers utilized fireworks and an additional giveaway on Fridays with fireworks, this would provide the best fitting model to increase attendance at the games.</p>
+</div>
+<hr>
+<div class="container">
+  <center>
+  <h4>Random Forest: Decision Trees</h4>
+  </center>
+  <input type="text" id="myInput5" onkeyup="myFunction()" placeholder="Search for variable.." title="Type in a variable">
+  <center>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Model</th>
+        <th>Learning Technique</th>
+        <th>Variables Used</th>
+        <th>Mean of Squared Residuals</th>
+        <th>% Variance Explained</th>
+        <th>Optimal Configuration</th>
+        <th>Optimal Trees/Interaction F-Statistic</th>
+      </tr>
+      </thead>
+      <tbody id="myTable5">
+        <tr>
+          <td>Model One</td>
+          <td>Random Forest Trees = 150</td>
+          <td>Outcome = Attend <br>
+          Predictors = All(day, -opponent)</td>
+          <td>51876966</td>
+          <td>58858099</td>
+          <td>28.86</td>
+          <td>8 predictors</td>
+        </tr>
+        <tr>
+          <td>Model Two</td>
+          <td>Random Forest Trees = 500</td>
+          <td>Outcome = Attend <br>
+          Predictors = All(day, -opponent)</td>
+          <td>42221845</td>
+          <td>54675633</td>
+          <td>12.73</td>
+          <td>9 predictors</td>
+        </tr>
+        <tr>
+          <td>Model Three</td>
+          <td>Random Forest Trees = 1000</td>
+          <td>Outcome = Attend <br>
+          Predictors = All(day, -opponent)</td>
+          <td>42182704</td>
+          <td>54675633</td>
+          <td>23.41</td>
+          <td>9 predictors</td>
+        </tr>
+      </tbody>
+  </table>
+  </center>
+  <p>The best model when utilizing a random forest design on the dodgers’ dataset is Model One. The model has the largest variance explained at 28.86%. The MSE is only slightly higher than the MSE for Model Three at 58858099. Model One also has the lowest number of predictors at trees with 8 predictors and 3 trees being utilized to explain 28.86% of the variance in the dodgers’ dataset. Thus Model One is the best fitting model when compared to the other two models that have been utilized on the dodgers’ dataset.</p>
+  
+</div>
+<hr>
+<div class="container">
+  <center><h4>Conclusion</h4></center>
+  <p>Overall, the use of bobblehead’s is the best predictor for increasing attendance at Dodgers baseball games. Utilizing additional giveaways in combination with bobblehead’s will also increase attendance at baseball games as well. The additional best predictor’s of attendance at a baseball game are the day of week and the temperature at the game. Utilizing all three of these predictor’s will help to determine what combination of giveaways, day of week, and temperature will help to increase attendance at the Dodgers baseball games.</p>
+</div>
+</br>
+</br>
+</br>
+
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+
+
+
+<hr>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>
