@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Gonzalez Analytics</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" />
+  <link rel="stylesheet" href="gh-fork-ribbon.css">
+  <script type="text/javascript" src="myscripts.js"></script>
+  <link rel="stylesheet" type="text/css" href="rgonzo.css">
+  <style>
+#myImage{
+      border-radius: 15px;
+      border: 1px solid black;
+      color: black;
+    }
+      .jumbotron{
+  margin-top: 20px;
+  background-size: cover;
+  background-color: black;
+  color: white;
+  height: 80%;
+}
+.main {
+ margin: 0 auto;
+ width: 80%;
+}
+.main:after {
+ display: block;
+ clear: both;
+ content: "";
+}
+.column {
+ width: 50%;
+ min-height: 100px;
+ margin-bottom: 20px;
+ float: left;
+ display: block;
+  border: 1px solid black;
+}
+#leftcolumn {
+ background-color: white;
+
+}
+#rightcolumn {
+ background-color: white;
+
+}
+.header {
+ width: 100%;
+ height: 100px;
+ background-color: white;
+ border: 1px solid black;
+ clear: both;
+}
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+  </style>
+</head>
+<body>
+<!---<a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>--->
+
+<!---<a class="github-fork-ribbon" href="https://github.com/gonzalezben81" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>--->
+<a href="https://github.com/gonzalezben81"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+<nav class="navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">Gonzalez Analytics</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.html">Home</a></li>
+      <li><a href="applications.html">Shiny Applications</a></li>
+      <li><a >R Tutorials</a></li>
+      <li><a href="regexpressions.html">Regular Expressions</a></li>
+      <li><a href="books.html">Reference Books</a></li>
+      <li><a href="python.html">Python References</a></li>
+      <li><a href="dodgers.html">Baseball Analytics</a></li>
+      <li><a href="textmining.html">Text Analytics</a></li>
+      <li><a href="nlp.html">Natura Language Processing</a></li>
+      <li><a href="detroit.html">Crime Prediction</a></li>
+    </ul>
+  </div>
+</nav>
+<!---Jumbotron--->
+<div class="jumbotron">
+  <center>
+  <h2>Shiny Applications</h2> 
+  <p>Browse the collections of Shiny applications that I have built. There is everything from statistical, mapping, webscraping, and other tools I have built to help automate and streamline workflows.
+  </br>
+  </br>
+  <a href="https://m.do.co/c/b72d3479beb8">$10 Digital Ocean Credit</a></p> 
+  </center>
+</div>
+<!---First row of Applications---->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4><b>Text Analysis</b></h4>
+      <a href="https://www.rgonzo.us/shiny/apps/textanalysis/"><img id="myImage"  src="img/text_analysis.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/textanalysis/" class="btn btn-primary">Text Analysis</a>
+</center>
+      </br>
+      <p>Text Analytics is a growing field. Text analysis allows you to search in unstructured data and make sense of things. Check out this text analysis app to see what you can do!</p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Homerun Comparison</b></h4>
+      <a href="https://www.rgonzo.us/shiny/apps/homerun/" ><img id="myImage" src="img/homerun_comparison.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/homerun/" class="btn btn-primary">Homerun</a>
+</center>
+      </br>
+      <p>Home Run: Get truly interactive and see how the Home Run Kings like Babe Ruth & Hank Aaron stack up against today’s top players. The results will astonish you. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Baseball Pitch Analysis</b></h4>
+      <a href="https://www.rgonzo.us/shiny/apps/pitchanalysis/"><img id="myImage" src="img/pitch_analysis.png" height="300" width="300"></a>
+            </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/pitchanalysis/" class="btn btn-primary">Pitch Analysis</a>
+</center>
+      </br>
+      <p>Baseball and Big Data. Unleash your inner big data interests and utilize this application to compare pitches between players and see what works and doesn’t work for your team. </p>
+    </div>
+  </div>
+</div>
+</br>
+<hr>
+</br>
+<!---Second row of Applications----->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4><b>Map Tools</b></h4>
+      <a href="https://www.rgonzo.us/shiny/apps/map/"><img id="myImage" src="img/map_tools.png" height="300" width="300" border="2"></a>
+      </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/map/" class="btn btn-primary">Map Tools</a>
+</center>
+      </br>
+      <p>Map Tools: This app allows the user to upload addresses via csv file and download the latitude and longitude of the addresses. You can even map the coordinates!!!</p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Missouri Congressional Map</b></h4>
+      <a href="https://www.rgonzo.us/shiny/apps/missouri/"><img id="myImage" src="img/missouri.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/missouri/" class="btn btn-primary">Missouri</a>
+</center>
+      </br>
+      <p>Missouri Congressional Map: This map allows users to interactively search through congressional districts of both the House and Senate of Missouri. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Illinois Congressional Map</b></h4>
+      <img id="myImage" src="img/illinois.png" height="300" width="300">
+            </br>
+      </br>
+      <center>
+<a href="https://www.rgonzo.us/shiny/apps/illinois/" class="btn btn-primary">Illinois</a>
+</center>
+      </br>
+      <p>Illinois Congressional Map: This map allows users to interactively search through congressional districts of both the House and Senate of Illinois. </p>
+    </div>
+  </div>
+</div>
+<!---Third row of Applications----->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4><b>Twitter</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/twitter/"><img id="myImage" src="img/twitter.png" height="300" width="300" border="2"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/twitter/" class="btn btn-primary">Twitter</a>
+</center>
+      </br>
+      <p>Twitter: This app allows users to retrieve tweets from selected individuals. You can then utilize text analysis to measure the amount of emotion in each tweet. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>SQL</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/sql/"><img id="myImage" src="img/sql.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/sql/" class="btn btn-primary">SQL</a>
+</center>
+      </br>
+      <p>SQL: This app allows a user to interact with their MySQL database; allowing them to retrieve and download their data. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Statistics</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/statistics/"><img id="myImage" src="img/statistics.png" height="300" width="300"></a>
+            </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/statistics/" class="btn btn-primary">Statistics</a>
+</center>
+      </br>
+      <p>Statistics: Interactively work with base statistics; linear regression (simple and multiple), plot interactive graphs, and subset your data. </p>
+    </div>
+  </div>
+</div>
+<!---Fourth row of Applications--->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4><b>Baseball Player: Stats & Info</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/baseballplayer/"><img id="myImage" src="img/baseball_player.png" height="300" width="300" border="2"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/baseballplayer/" class="btn btn-primary">Baseball Player</a>
+</center>
+      </br>
+      <p>Baseball Player: Search thousands of players and get their stats. This app can search the Lahman data set that has info on every player since the year 1870 !!!!!!!</p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Interactive Map</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/interactivemap/"><img id="myImage" src="img/interactive_map.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/interactivemap/" class="btn btn-primary">Interactive Map</a>
+</center>
+      </br>
+      <p>Interactive Map: This map allows you full interaction to plot, zoom, and measure distance, points, etc… Use this tool to figure out how far you are going, or even how much further you have left. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Home Run</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/homerun/"><img id="myImage" src="img/statistics.png" height="300" width="300"></a>
+            </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/homerun/" class="btn btn-primary">Home Run</a>
+</center>
+      </br>
+      <p>Home Run: Get truly interactive and see how the Home Run kings like Babe Ruth & Hank Aaron stack up against today’s top players. The results will astonish you. </p>
+    </div>
+  </div>
+</div>
+<!---Fifth row of Applications--->
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h4><b>Military Map</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/military/"><img id="myImage" src="img/military_map.png" height="300" width="300" border="2"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/military/" class="btn btn-primary">Military Map</a>
+</center>
+      </br>
+      <p>Military Map: Utilizing the census Tiger files; you can now see where all the U.S. military bases are around the world. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>Google Analytics App</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/googleapp/"><img id="myImage" src="img/google_analytics.png" height="300" width="300"></a>
+      </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/googleapp/" class="btn btn-primary">Google Analytics App</a>
+</center>
+      </br>
+      <p>Google Analytics: Look into how interactive your website is with this Google Analytics app. Perform queries and visually display your data in familiar bar, column, and scatter plot charts. </p>
+    </div>
+    <div class="col-sm-4">
+      <h4><b>CSV Viewer</b></h4>
+      <a href="http://www.rgonzo.us/shiny/apps/viewer/"><img id="myImage" src="img/csv_viewer.png" height="300" width="300"></a>
+            </br>
+      </br>
+      <center>
+<a href="http://www.rgonzo.us/shiny/apps/viewer/" class="btn btn-primary">CSV Viewer</a>
+</center>
+      </br>
+      <p>CSV Viewer: Has excel let you down once again and you can’t open and view that file you need. Utilize this quick and easy CSV viewer and say goodbye to the spinning circle forever. </p>
+    </div>
+  </div>
+</div>
+</br>
+<hr>
+<hr>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Scroll to Top</button>
+<div class="container" id="mystuff">
+
+<ul class="nav" id="mylist">
+  <center>
+    <div class="col-sm-4">
+  <li id="mylist"><a href="mailto:gonzalezben81@gmail.com" class=" btn btn-primary">Contact Me</a></li>
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://github.com/gonzalezben81"><i style="font-size:48px" class="fa">&#xf09b;</i></a></li> 
+  </div>
+  <div class="col-sm-4">
+  <li id="mylist"><a href="https://m.do.co/c/b72d3479beb8" class=" btn btn-success">$10 Digital Ocean Credit</a></li>
+  </div>
+  </center>
+</ul>
+
+</div>
+
+<hr>
+
+
+</br>
+</br>
+</body>
+</html>
